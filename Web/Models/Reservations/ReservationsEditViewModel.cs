@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Data.Enumeration;
@@ -11,13 +11,21 @@ namespace Web.Models.Reservations
 {
     public class ReservationsEditViewModel
     {
+        [HiddenInput]
         public int Id { get; set; }
+        [Required]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime DateOfAccommodation { get; set; }
+        [Required]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime DateOfExemption { get; set; }
+        [Required]
         public bool IsBreakfastIncluded { get; set; }
+        [Required]
         public bool IsAllInclusive { get; set; }
         public decimal OverallBill { get; set; }
         public string Message { get; set; }
-
     }
 }
