@@ -1,4 +1,4 @@
-﻿using Data.Enumeration;
+using Data.Enumeration;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -25,7 +25,13 @@ namespace Web.Models.Users
         public string Email { get; set; }
 
         public bool IsActive { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime DateOfBeingHired { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime? DateOfBeingFired { get; set; }
 
     }
