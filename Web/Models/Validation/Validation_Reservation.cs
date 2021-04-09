@@ -1,4 +1,4 @@
-﻿using Data.Entity;
+using Data.Entity;
 using Data.Enumeration;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -15,8 +15,13 @@ namespace Web.Models.Validation
     {
         
         public int RoomId { get; set; }
+        
         public int ReservationId { get; set; }
+
+        [DataType(DataType.Date)]
         public DateTime DateOfAccommodation { get; set; }
+
+        [DataType(DataType.Date)]
         public DateTime DateOfExemption { get; set; }
 
     }
