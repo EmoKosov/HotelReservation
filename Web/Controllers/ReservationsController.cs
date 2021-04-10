@@ -18,18 +18,30 @@ using Web.Models.Validation;
 
 namespace Web.Controllers
 {
+    /// <summary>
+    /// The main reservations class
+    /// CRUD operations with reservations
+    /// </summary> 
     public class ReservationsController : Controller
     {
 
         private readonly int PageSize = GlobalVar.AmountOfElementsDisplayedPerPage;
+        /// <summary>
+        /// Default value
+        /// </summary>
         public const int ReservationHourStart = 12;
         private readonly HotelReservationDb context;
-
+        /// <summary>
+        /// The main constuctor 
+        /// opens database
+        /// </summary>
         public ReservationsController()
         {
             context = new HotelReservationDb();
         }
-
+        /// <summary>
+        /// Default method by the template
+        /// </summary>
         public IActionResult ChangePageSize(int id)
         {
             if (id > 0)
@@ -39,7 +51,10 @@ namespace Web.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Reservations
+        /// <summary>
+        /// The main method
+        /// Show reservations
+        /// </summary>
         public IActionResult Index(ReservationsIndexViewModel model)
         {
 
@@ -100,7 +115,10 @@ namespace Web.Controllers
             return View(model);
         }
 
-        // GET: Reservations/Create
+        /// <summary>
+        /// The create post method
+        /// Creates reservation and add to database
+        /// </summary> 
         public IActionResult Create()
         {
 
@@ -116,9 +134,12 @@ namespace Web.Controllers
             return View(model);
         }
 
-        // POST: Reservations/Create        
+        /// <summary>
+        /// The create post method
+        /// Creates reservation and add to database
+        /// </summary>    
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]   
         public IActionResult Create(ReservationsCreateViewModel createModel)
         {
             if (GlobalVar.LoggedOnUserId == -1)
@@ -164,7 +185,10 @@ namespace Web.Controllers
             createModel = CreateReservationVMWithDropdown(createModel, null);
             return View(createModel);
         }
-
+        /// <summary>
+        /// The edit method
+        /// Edits reservation
+        /// </summary>
         public IActionResult Edit(int? id)
         {
 
@@ -193,7 +217,10 @@ namespace Web.Controllers
             return View(model);
         }
 
-        // POST: Clients/Edit/5       
+        /// <summary>
+        /// The edit method
+        /// Edits reservation
+        /// </summary>     
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(ReservationsEditViewModel editModel)
@@ -253,7 +280,10 @@ namespace Web.Controllers
             return View(editModel);
         }
 
-
+        /// <summary>
+        /// The delete method
+        /// Deletes reservation
+        /// </summary>
         public IActionResult Delete(int? id)
         {
 
@@ -275,7 +305,10 @@ namespace Web.Controllers
         }
 
 
-        // GET: Reservations/Detail
+        /// <summary>
+        /// The details method
+        /// Gets information about reservation
+        /// </summary>
         public IActionResult Detail(int? id)
         {
             if (GlobalVar.LoggedOnUserId == -1)
@@ -356,7 +389,10 @@ namespace Web.Controllers
             return View(model);
         }
 
-
+        /// <summary>
+        /// The connecting method
+        /// Connects user to reservation
+        /// </summary>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult LinkClientReservation(ReservationsViewModel linkModel)

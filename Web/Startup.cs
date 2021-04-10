@@ -11,21 +11,34 @@ using Microsoft.Extensions.Hosting;
 
 namespace Web
 {
+    /// <summary>
+    /// The main Startup class
+    /// </summary>
     public class Startup
     {
+        /// <summary>
+        /// Startupconstuctor=
+        /// Configures the project.
+        /// </summary>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-
+        /// <summary>
+        /// Configures the project.
+        /// </summary>
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
+        /// Configures the project.
+        /// </summary>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
         }
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        /// Configures the project.
+        /// </summary>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
