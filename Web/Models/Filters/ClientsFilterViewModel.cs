@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Data.Enumeration;
@@ -22,5 +22,6 @@ namespace Web.Models.Reservations
         [RegularExpression(@"^[a-zA-Zа-яА-Я]+$", ErrorMessage = "Фамилията може да съдържа само букви")]
         [StringLength(40, ErrorMessage = "Фамилията не може да бъде по-дълга от 40 символа")]
         public string LastName { get; set; }
+
     }
 }

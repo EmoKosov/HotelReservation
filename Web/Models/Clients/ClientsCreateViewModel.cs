@@ -1,10 +1,14 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using Data.Enumeration;
 
 namespace Web.Models.Clients
 {
     public class ClientsCreateViewModel
     {
+        /*[Required]
+        [StringLength(50, ErrorMessage = "add-error-message")]*/
+
+
         [DataType(DataType.Text)]
         [RegularExpression(@"^[a-zA-Zа-яА-Я]+$", ErrorMessage = "Моля, използвайте само букви")]
         [StringLength(40, ErrorMessage = "Името не трябва да бъде по-дълго от 40 символа")]
@@ -31,5 +35,6 @@ namespace Web.Models.Clients
         public string Email { get; set; }
 
         public bool IsAdult { get; set; }
+
     }
 }

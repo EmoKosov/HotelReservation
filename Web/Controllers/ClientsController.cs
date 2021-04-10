@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -156,10 +156,12 @@ namespace Web.Controllers
 
             if (ModelState.IsValid)
             {
+
                 if (!ClientExists(editModel.Id))
                 {
                     return NotFound();
                 }
+
                 Client client = new Client()
                 {
                     Id = editModel.Id,
@@ -169,29 +171,41 @@ namespace Web.Controllers
                     TelephoneNumber = editModel.TelephoneNumber,
                     IsAdult = editModel.IsAdult
                 };
+
                 context.Update(client);
                 context.SaveChanges();
+
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(editModel);
         }
+
+
+
         public IActionResult Detail(int? id)
         {
+
             if (GlobalVar.LoggedOnUserId == -1)
             {
                 return RedirectToAction("LogInRequired", "Users");
             }
+
             if (id == null || !ClientExists((int)id))
             {
                 return NotFound();
             }
+
             Client client = context.Clients.Find(id);
             List<Reservation> reservations = new List<Reservation>();
             List<ClientReservation> clientReservations = context.ClientReservation.Where(x => x.ClientId == id).ToList();
+
             foreach (var cr in clientReservations)
             {
                 reservations.Add(context.Reservations.Find(cr.ReservationId));
             }
+
             ClientsDetailViewModel model = new ClientsDetailViewModel()
             {
                 FirstName = client.FirstName,
@@ -229,23 +243,31 @@ namespace Web.Controllers
                     }
                 }).ToList(),
                 TelephoneNumber = client.TelephoneNumber
+
             };
+
             return View(model);
         }
+
+
         // GET: Clients/Delete/5
         public IActionResult Delete(int? id)
         {
+
             if (GlobalVar.LoggedOnUserId == -1)
             {
                 return RedirectToAction("LogInRequired", "Users");
             }
+
             if (id == null || !ClientExists((int)id))
             {
                 return NotFound();
             }
+
             Client client = context.Clients.Find(id);
             context.Clients.Remove(client);
             context.SaveChanges();
+
             return RedirectToAction(nameof(Index));
         }
         private bool ClientExists(int id)
@@ -269,6 +291,8 @@ namespace Web.Controllers
 
             return collection;
         }
+
+
 
     }
 }
