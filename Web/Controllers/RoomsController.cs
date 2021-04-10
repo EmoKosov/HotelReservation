@@ -15,17 +15,30 @@ using Web.Models.Validation;
 
 namespace Web.Controllers
 {
+    /// <summary>
+    /// The main Rooms Controller clas
+    /// CRUD operations
+    /// </summary>
     public class RoomsController : Controller
     {
         private readonly int PageSize = GlobalVar.AmountOfElementsDisplayedPerPage;
         private readonly HotelReservationDb context;
+        /// <summary>
+        /// Default value
+        /// </summary>
         public const int ReservationHourStart = 12;
 
+        /// <summary>
+        /// The main Rooms Controller clas
+        /// Opens database connection
+        /// </summary>
         public RoomsController()
         {
             context = new HotelReservationDb();
         }
-
+        /// <summary>
+        /// Default method by the template
+        /// </summary>
         public IActionResult ChangePageSize(int id)
         {
             if (id > 0)
@@ -35,7 +48,10 @@ namespace Web.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Rooms
+        /// <summary>
+        /// The index method
+        /// Show rooms
+        /// </summary>
         public IActionResult Index(RoomsIndexViewModel model)
         {
             UpdateRoomOccupacity();
@@ -62,7 +78,10 @@ namespace Web.Controllers
 
             return View(model);
         }
-        // GET: Rooms/Create
+        /// <summary>
+        /// The create method
+        /// Creates reservations
+        /// </summary>
         public IActionResult Create()
         {
             if (GlobalVar.LoggedOnUserRights != GlobalVar.UserRights.Admininstrator)
@@ -72,7 +91,10 @@ namespace Web.Controllers
             return View(new RoomsCreateViewModel());
         }
 
-        // POST: Rooms/Create        
+        /// <summary>
+        /// The create method
+        /// Creates reservations
+        /// </summary>      
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(RoomsCreateViewModel createModel)
@@ -116,7 +138,11 @@ namespace Web.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
-        // GET: Rooms/Edit/5
+        /// <summary>
+        /// The edit method
+        /// Edits reservation
+        /// </summary>
+
         public IActionResult Edit(int? id)
         {
             if (GlobalVar.LoggedOnUserRights != GlobalVar.UserRights.Admininstrator)
@@ -140,7 +166,10 @@ namespace Web.Controllers
             };
             return View(model);
         }
-        // POST: Rooms/Edit/5       
+        /// <summary>
+        /// The edit method
+        /// Edits reservation
+        /// </summary>    
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(RoomsEditViewModel editModel)
@@ -184,6 +213,10 @@ namespace Web.Controllers
             }
             return View(editModel);
         }
+        /// <summary>
+        /// The delete method
+        /// Deletes reservation
+        /// </summary>
         public IActionResult Delete(int? id)
         {
             if (GlobalVar.LoggedOnUserRights != GlobalVar.UserRights.Admininstrator)
@@ -218,6 +251,10 @@ namespace Web.Controllers
                 context.SaveChanges();
             }
         }
+        /// <summary>
+        /// The bool method
+        /// Checks room exists
+        /// </summary>
         private bool RoomExists(int id)
         {
             return context.Rooms.Any(e => e.Id == id);

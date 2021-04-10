@@ -14,16 +14,24 @@ using Web.Models.Validation;
 
 namespace Web.Controllers
 {
+    /// <summary>
+    /// The main Users Controller clas
+    /// CRUD operations
+    /// </summary>
     public class UsersController : Controller
     {
         private readonly int PageSize = GlobalVar.AmountOfElementsDisplayedPerPage;
         private readonly HotelReservationDb context;
-
+        /// <summary>
+        /// The main Users controller
+        /// </summary>
         public UsersController()
         {
             context = new HotelReservationDb();
         }
-
+        /// <summary>
+        /// Default method by the template
+        /// </summary>
         public IActionResult ChangePageSize(int id)
         {
             if (id > 0)
@@ -34,7 +42,10 @@ namespace Web.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Users
+        /// <summary>
+        /// The index method
+        /// Show users
+        /// </summary>
         public IActionResult Index(UsersIndexViewModel model)
         {
 
@@ -71,7 +82,10 @@ namespace Web.Controllers
             return View(model);
         }
 
-        // GET: Users/Create
+        /// <summary>
+        /// The create method
+        /// Creates users
+        /// </summary>
         public IActionResult Create()
         {
 
@@ -85,7 +99,10 @@ namespace Web.Controllers
             return View();
         }
 
-        // POST: Users/Create        
+        /// <summary>
+        /// The create method
+        /// Creates users
+        /// </summary>      
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(UsersCreateViewModel createModel)
@@ -193,7 +210,10 @@ namespace Web.Controllers
             return RedirectToAction("Index", "Users");
 
         }
-        // GET: Users/Edit/5
+        /// <summary>
+        /// The edit method
+        /// Edits users
+        /// </summary>
         public IActionResult Edit(int? id)
         {
             if (GlobalVar.LoggedOnUserRights != GlobalVar.UserRights.Admininstrator)
@@ -223,7 +243,10 @@ namespace Web.Controllers
             };
             return View(model);
         }
-        // POST: Users/Edit/5       
+        /// <summary>
+        /// The edit method
+        /// Edit users
+        /// </summary>    
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(UsersEditViewModel editModel)
@@ -273,7 +296,10 @@ namespace Web.Controllers
             return View(editModel);
         }
 
-        // GET: Users/Delete/5
+        /// <summary>
+        /// The delete method
+        /// Deletes user
+        /// </summary>
         public IActionResult Delete(int? id)
         {
             if (GlobalVar.LoggedOnUserRights != GlobalVar.UserRights.Admininstrator)
