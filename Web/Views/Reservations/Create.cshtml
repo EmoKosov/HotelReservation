@@ -33,7 +33,7 @@
             {
 
                 <div class="form-group">
-                    <label asp-for="RoomId" class="control-label">Room number</label>
+                    <label asp-for="RoomId" class="control-label">Номер на стая</label>
                     @Html.DropDownList("RoomId", Model.Rooms, "Избери номер на стая", new { @class = "form-control" })
                     <span asp-validation-for="RoomId" class="text-danger"></span>
                 </div>
@@ -51,7 +51,7 @@
             {
 
                 <div class="form-group">
-                    <label asp-for="UserId" class="control-label">Reservation is in the name of</label>
+                    <label asp-for="UserId" class="control-label">Резервацията е на името на</label>
                     @Html.DropDownList("UserId", Model.Users, "Избери потребител", new { @class = "form-control" })
                     <span asp-validation-for="UserId" class="text-danger"></span>
                 </div>
@@ -65,13 +65,13 @@
 
             <br />
             <div class="form-group">
-                <label asp-for="DateOfAccommodation" class="control-label">Date of Accommodation</label>
+                <label asp-for="DateOfAccommodation" class="control-label">Дата на настаняване</label>
                 <input asp-for="DateOfAccommodation" class="form-control" type="date" />
                 <span asp-validation-for="DateOfAccommodation" class="text-danger"></span>
             </div>
             <br />
             <div class="form-group">
-                <label asp-for="DateOfExemption" class="control-label">Date of Exemption </label>
+                <label asp-for="DateOfExemption" class="control-label">Дата на освобождаване </label>
                 <input asp-for="DateOfExemption" class="form-control" type="date" />
                 <span asp-validation-for="DateOfExemption" class="text-danger"></span>
             </div>
@@ -79,7 +79,7 @@
             <br />
 
             <div class="form-group">
-                <label asp-for="IsBreakfastIncluded" class="control-label">Breakfast included</label>
+                <label asp-for="IsBreakfastIncluded" class="control-label">Закуска</label>
                 <input asp-for="IsBreakfastIncluded" class="form-control" type="checkbox" />
                 <span asp-validation-for="IsBreakfastIncluded" class="text-danger"></span>
             </div>
@@ -90,7 +90,7 @@
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Make reservation" class="btn btn-primary" />
+                <input type="submit" value="Направи резервация" class="btn btn-primary" />
             </div>
         </form>
     </div>

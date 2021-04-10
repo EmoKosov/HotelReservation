@@ -53,22 +53,22 @@
                 <h2><b>Филтър по</b></h2>
             </div>
             <div class="col-md-2 form-group">
-                <input asp-for="Filter.Capacity" class="form-control" placeholder="Max capacity" />
+                <input asp-for="Filter.Capacity" class="form-control" placeholder="Капацитет" />
                 <span asp-validation-for="Filter.Capacity" class="text-danger"></span>
             </div>
             <div class="col-md-2 form-group">
                 @Html.DropDownListFor(model => Model.Filter.IsFree, new List<SelectListItem>
-                    () { new SelectListItem() { Text = "Free", Value = "True" }, new SelectListItem() { Text = "Occupied", Value = "False" } }, "Status", new { @class = "form-control" })
+                    () { new SelectListItem() { Text = "Свободна", Value = "True" }, new SelectListItem() { Text = "Заета", Value = "False" } }, "Статус", new { @class = "form-control" })
                 <span asp-validation-for="Filter.IsFree" class="text-danger"></span>
             </div>
             <div class="col-md-3 form-group">
-                @Html.DropDownList("Filter.Type", Html.GetEnumSelectList<RoomTypeEnum>(), "Room type", new { @class = "form-control" })
+                @Html.DropDownList("Filter.Type", Html.GetEnumSelectList<RoomTypeEnum>(), "Вид стая", new { @class = "form-control" })
                 <span asp-validation-for="Filter.Type" class="text-danger"></span>
             </div>
 
 
             <div class="col-md-1 form-group text-center">
-                <input type="submit" value="Filter" class="btn btn-primary" />
+                <input type="submit" value="Филтрирай" class="btn btn-primary" />
             </div>
         </div>
     </form>
@@ -150,7 +150,7 @@
                     </td>
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.Id">Промени</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Изтрии</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id">Изтрий</a>
                     </td>
                 </tr>
             }

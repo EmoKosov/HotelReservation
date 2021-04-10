@@ -5,7 +5,7 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create client</h1>
+<h1>Добави клиент</h1>
 
 <hr />
 
@@ -14,42 +14,42 @@
         <form asp-action="Create" asp-controller="Clients" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="FirstName" class="control-label"></label>
+                <label for="firstname">Име</label>
                 <input asp-for="FirstName" class="form-control" />
                 <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LastName" class="control-label"></label>
+                <label for="lastname">Фамилия</label>
                 <input asp-for="LastName" class="form-control" />
                 <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
             <br />
             <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
+                <label for="email">Й-мейл</label>>
                 <input asp-for="Email" class="form-control" type="email" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TelephoneNumber" class="control-label"></label>
+                <label for="telephonenumber">Телефонен номер</label>
                 <input asp-for="TelephoneNumber" class="form-control" />
                 <span asp-validation-for="TelephoneNumber" class="text-danger"></span>
             </div>
             <br />
             <div class="form-group">
-                <label asp-for="IsAdult" class="control-label">Are you 18+ years old: </label>
+                <label asp-for="IsAdult" class="control-label">Пълнолетен? </label>
                 <input asp-for="IsAdult" type="checkbox" style="width:20px;height:20px;vertical-align:sub" />
                 <span asp-validation-for="IsAdult" class="text-danger"></span>
             </div>
             <br />
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Добави" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Върни се назад</a>
+    <a asp-action="Index">Върни</a>
 </div>
 
 @section Scripts {

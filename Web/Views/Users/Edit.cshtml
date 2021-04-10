@@ -27,57 +27,57 @@
             }
             <br />
             <div class="form-group">
-                <label asp-for="Username" class="control-label"></label>
+                <label for="username">Потребителско име</label>
                 <input asp-for="Username" class="form-control" />
                 <span asp-validation-for="Username" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
+                <label for="password">Парола</label>
                 <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <br />
             <div class="form-group">
-                <label asp-for="FirstName" class="control-label"></label>
+                <label for="firstname">Име</label>
                 <input asp-for="FirstName" class="form-control" />
                 <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MiddleName" class="control-label"></label>
+                <label for="middlename">Презиме</label>
                 <input asp-for="MiddleName" class="form-control" />
                 <span asp-validation-for="MiddleName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LastName" class="control-label"></label>
+                <label for="lastname">Фамилия</label>
                 <input asp-for="LastName" class="form-control" />
                 <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EGN" class="control-label"></label>
+                <label for="egn">ЕГН</label>
                 <input asp-for="EGN" class="form-control" />
                 <span asp-validation-for="EGN" class="text-danger"></span>
             </div>
             <br />
             <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
+                <label for="email">Й-мейл</label>
                 <input asp-for="Email" class="form-control" type="email" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TelephoneNumber" class="control-label"></label>
+                <label for="telephonenumber">Телефонен номер</label>
                 <input asp-for="TelephoneNumber" class="form-control" />
                 <span asp-validation-for="TelephoneNumber" class="text-danger"></span>
             </div>
             <br />
             <div class="form-group">
-                <input type="submit" value="Edit" class="btn btn-primary" />
+                <input type="submit" value="Промени" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Върни</a>
 </div>
 
 @section Scripts {

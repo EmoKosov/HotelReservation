@@ -56,31 +56,31 @@
             <h3><b>Филтрирай по</b></h3>
         </div>
         <div class="col-md-3 form-group">
-            <input asp-for="Filter.FirstName" class="form-control" placeholder="First name" />
+            <input asp-for="Filter.FirstName" class="form-control" placeholder="Име" />
             <span asp-validation-for="Filter.FirstName" class="text-danger"></span>
         </div>
         <div class="col-md-3 form-group">
-            <input asp-for="Filter.MiddleName" class="form-control" placeholder="Middle name" />
+            <input asp-for="Filter.MiddleName" class="form-control" placeholder="Презиме" />
             <span asp-validation-for="Filter.MiddleName" class="text-danger"></span>
         </div>
         <div class="col-md-3 form-group">
-            <input asp-for="Filter.LastName" class="form-control" placeholder="Last name" />
+            <input asp-for="Filter.LastName" class="form-control" placeholder="Фамилия" />
             <span asp-validation-for="Filter.LastName" class="text-danger"></span>
         </div>
     </div>
     <div class="row">
         <div class="col-md-2 form-group"></div>
         <div class="col-md-3 form-group">
-            <input asp-for="Filter.Username" class="form-control" placeholder="Username" />
+            <input asp-for="Filter.Username" class="form-control" placeholder="Потребителско име" />
             <span asp-validation-for="Filter.Username" class="text-danger"></span>
         </div>
         <div class="col-md-5 form-group">
-            <input asp-for="Filter.Email" class="form-control" placeholder="Email" />
+            <input asp-for="Filter.Email" class="form-control" placeholder="Й-мейл" />
             <span asp-validation-for="Filter.Email" class="text-danger"></span>
         </div>
         <div class="col-md-1 form-group text-center">
             <div class="form-group">
-                <input type="submit" value="Filter" class="btn btn-primary" />
+                <input type="submit" value="Филтрирай" class="btn btn-primary" />
             </div>
         </div>
     </div>
@@ -184,7 +184,7 @@
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Промени</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Изтрии</a>
+                <a asp-action="Delete" asp-route-id="@item.Id">Изтрий</a>
             </td>
         </tr>
     }
