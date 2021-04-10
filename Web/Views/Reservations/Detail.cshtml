@@ -1,0 +1,121 @@
+﻿@using Web.Models.Users
+@using Web.Models.Rooms
+@using Web.Models.Clients
+@using Web.Models.Reservations
+@model Web.Models.Reservations.ReservationsViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<head>
+    <style>
+
+        table, th, td {
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .change-page-display-amount {
+            background: #e8e8e8;
+            border: 2px solid #d8d8d8;
+            color: black;
+            font: bold;
+        }
+
+        .common-factor-font {
+            font-family: Consolas;
+        }
+    </style>
+</head>
+
+<h1>Информация за резервацията:</h1>
+<br />
+<h3>
+    <span class="common-factor-font">Потребител: </span>
+    @Model.User.FirstName @Model.User.MiddleName @Model.User.LastName (@Model.User.Username)
+</h3>
+<h3>
+    <span class="common-factor-font">Стая: </span>
+    @Model.Room.Number  @Model.Room.Type (@Model.CurrentReservationClientCount/@Model.Room.Capacity)
+</h3>
+<h3>
+    <span class="common-factor-font">Дължима сума: </span>
+    @Model.OverallBill
+
+    @if (!Model.IsBreakfastIncluded && !Model.IsAllInclusive)
+    {
+        <span>няма включени екстри</span>
+    }
+    else
+    {
+        <span> с включени </span>
+        @if (Model.IsBreakfastIncluded)
+        {<span> закуска </span>}
+        @if (Model.IsAllInclusive)
+        {<span> и All-inclusive </span>}
+    }
+</h3>
+<div class="row">
+    <div class="col-md-4">
+    </div>
+</div>
+<br />
+<br />
+<div class="row">
+    <div class="col-md-4">
+
+        <h3>Свързани клиенти</h3>
+        <br />
+        @if (Model == null || Model.SignedInClients == null || Model.SignedInClients.Count() == 0)
+        {
+            <h3>Няма клиенти</h3>
+        }
+        else
+        {
+            <div style="max-height:300px;overflow-y:scroll">
+                <br>
+
+                @foreach (var c in Model.SignedInClients)
+                {
+                    <h5>@c.FirstName @c.LastName (@c.Email)</h5>
+                    <br />
+                }
+            </div>
+        }
+    </div>
+
+    @if (Model.Room.Capacity <= Model.SignedInClients.Count())
+    {
+        <div class="col-md-7">
+            <br />
+            <h1 class="text-danger">Не можеш да добавяш повече клиенти</h1>
+            <br />
+            <h1 class="text-danger">Стаята е запълнена</h1>
+        </div>
+    }
+    else if (Model.AvailableClients.Count() <= 0)
+    {
+        <div class="col-md-7">
+            <br />
+            <h1 class="text-danger">Не можеш да добавяш повече клиенти</h1>
+            <br />
+            <h1 class="text-danger">Няма повече клиенти.</h1>
+        </div>
+    }else
+    {
+    <div class="col-md-4">
+        <h3>Добави клиенти</h3>
+        <br />
+        <form asp-action="LinkClientReservation" asp-controller="Reservations" method="post">
+            <input type="hidden" asp-for="Id" />
+            @Html.DropDownList("ClientId", Model.AvailableClients, "Select client", new { @class = "form-control" })
+            <span asp-validation-for="ClientId" class="text-danger"></span>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Резервирай към" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+    }
+</div>

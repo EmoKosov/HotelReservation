@@ -1,0 +1,76 @@
+﻿@using Data.Enumeration
+@model Web.Models.Rooms.RoomsCreateViewModel
+
+@{
+    ViewData["Title"] = "Нова стая";
+}
+
+<h1>Създаване на стая</h1>
+<hr />
+
+@if (Model != null && Model.Message != null)
+{
+
+    <h5 style="color:red;">@Model.Message</h5>
+    <hr />
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" asp-controller="Rooms" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label for="number">Номер</label>
+                <input asp-for="Number" class="form-control" type="number" />
+                <span asp-validation-for="Number" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="capacity">Капацитет</label>
+                <input asp-for="Capacity" class="form-control" />
+                <span asp-validation-for="Capacity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="roomtype">Вид стая</label>
+                @Html.DropDownList("RoomType", Html.GetEnumSelectList<RoomTypeEnum>(), new { @class = "form-control" })
+                <span asp-validation-for="RoomType" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label for="priceadult">Цена (за пълнолетни)</label>
+                @if (Model != null && Model.PriceAdult > 0)
+                {
+                    <input asp-for="PriceAdult" class="form-control" type="number" step="0.01" value="@Model.PriceAdult" />
+                }
+                else
+                {
+                    <input asp-for="PriceAdult" class="form-control" type="number" step="0.01" value="0.00" />
+                }
+                <span asp-validation-for="PriceAdult" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="PriceChild">Цена (за непълнолетни)</label>
+                @if (Model != null && Model.PriceChild > 0)
+                {
+                    <input asp-for="PriceChild" class="form-control" type="number" step="0.01" value="@Model.PriceChild" />
+                }
+                else
+                {
+                    <input asp-for="PriceChild" class="form-control" type="number" step="0.01" value="0.00" />
+                }
+                <span asp-validation-for="PriceChild" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Назад</a>
+</div>
+
+@section Scripts {
+    @{ Html.RenderPartial("_ValidationScriptsPartial");}
+}

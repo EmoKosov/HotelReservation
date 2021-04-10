@@ -1,0 +1,149 @@
+﻿@using Web.Models.Users
+@using Web.Models.Rooms
+@using Web.Models.Clients
+@using Web.Models.Reservations
+@model Web.Models.Reservations.ReservationsIndexViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<head>
+    <style>
+        #reservations {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+            #reservations td, #reservations th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            #reservations tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            #reservations tr:hover {
+                background-color: #ddd;
+            }
+
+            #reservations th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #4CAF50;
+                color: white;
+            }
+    </style>
+</head>
+
+<h1>Информация за резервации</h1>
+<br />
+<br />
+
+<div style="float: right">
+    <ul class="pagination">
+
+        <li class="page-item" align="right">
+            <a asp-action="ChangePageSize" asp-route-id="10" class="page-link change-page-display-amount">10</a>
+        </li>
+        <li class="page-item" align="right">
+            <a asp-action="ChangePageSize" asp-route-id="25" class="page-link change-page-display-amount">25</a>
+        </li>
+        <li class="page-item" align="right">
+            <a asp-action="ChangePageSize" asp-route-id="50" class="page-link change-page-display-amount">50</a>
+        </li>
+    </ul>
+</div>
+
+<div>
+    <ul class="pagination">
+        @for (var i = 1; i <= Model.Pager.PagesCount; i++)
+        {
+            <li class="page-item @(i == Model.Pager.CurrentPage ? "active" : "")">
+                <a asp-route-Pager.CurrentPage="@i" class="page-link">@i</a>
+            </li>
+        }
+
+    </ul>
+</div>
+
+<table id="reservations">
+    <thead>
+        <tr>
+            <th>
+                Име
+            </th>
+            <th>
+                Стая<br />
+                и капацитет
+            </th>
+            <th>
+                Тип стая<br />
+            </th>
+            <th>
+                Екстри<br />
+            </th>
+            <th>
+                Срок<br />
+            </th>
+            <th>
+                Дължима сума<br />
+            </th>
+            <th>
+                Действие
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ReservationsViewModel item in Model.Items)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.FirstName)<br />
+                    @Html.DisplayFor(modelItem => item.User.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Room.Number)<br />
+                    @Html.DisplayFor(modelItem => item.CurrentReservationClientCount) /
+                    @Html.DisplayFor(modelItem => item.Room.Capacity)
+                </td>
+                <td valign="middle">
+                    @Html.DisplayFor(modelItem => item.Room.Type)
+                </td>
+                <td>
+                    @if (item.IsAllInclusive)
+                    {
+                        <b>All inclusive</b>}
+
+                    @if (item.IsBreakfastIncluded)
+                    {
+                        <br />
+                        <b>закуска</b>}
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfAccommodation)<br />
+                    @Html.DisplayFor(modelItem => item.DateOfExemption)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OverallBill)<br />
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Промени</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Изтрий</a>
+                    <br />
+                    <a asp-action="Detail" asp-route-id="@item.Id">Резервирай</a>
+                </td>
+            </tr>
+        }
+        <tr style="background:#f0f0f0">
+            <td colspan="6"></td>
+            <td>
+                <a asp-action="Create"><b>Създай нова резервация</b></a>
+            </td>
+        </tr>
+    </tbody>
+</table>

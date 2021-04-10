@@ -19,6 +19,11 @@
 
   <ItemGroup>
     <Folder Include="Attributes\" />
+    <Folder Include="Views\Clients\" />
+    <Folder Include="Views\Shared\" />
+    <Folder Include="Views\Users\" />
+    <Folder Include="Views\Rooms\" />
+    <Folder Include="Views\Reservations\" />
   </ItemGroup>
 
 </Project>

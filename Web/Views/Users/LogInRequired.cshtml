@@ -1,0 +1,41 @@
+﻿@using Data.Enumeration
+@model Web.Models.Users.UsersLogInViewModel
+
+@{ ViewData["Title"] = "Вход"; }
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+<h1>Вход</h1>
+
+<div class="w3-panel w3-red w3-card-4">
+    <h5 style="color:white;">Моля, влезте в акаунт с администраторски права!</h5>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="LogIn" asp-controller="Users" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Username" class="control-label"></label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" type="password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="LogIn" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+<div>
+    <a asp-action="Create">Register</a>
+</div>
